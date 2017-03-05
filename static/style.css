@@ -1,6 +1,7 @@
 body {
   background-color: white;
   font-family: 'Roboto', sans-serif;
+  margin-bottom: 15vh;
 }
 
 h1 {
@@ -28,6 +29,7 @@ p {
 .footer {
   position: fixed;
   width: 100vw;
+  min-height: 10vh;
   bottom: 0;
   background-color: #582A72;
   color: white;
