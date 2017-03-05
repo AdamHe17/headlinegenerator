@@ -49,10 +49,13 @@ def clean_headline(headline):
 
 	tokens = [t for t in tokens if not t.lower() in stop_words]
 	result = " ".join(tokens)
-	# result = delete_articles(result)
-	# result = conjunction_limiter(result)
-	# result = preposition_limiter(result)
-	# result = delete_auxillary_verbs(result)
+	try:
+		result = delete_articles(result)
+		result = conjunction_limiter(result)
+		result = preposition_limiter(result)
+		result = delete_auxillary_verbs(result)
+	except:
+		pass
 
 	tokens = tokenize(result)
 
