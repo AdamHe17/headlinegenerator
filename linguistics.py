@@ -47,9 +47,9 @@ def clean_headline(headline):
 	stop_words = ['a', 'an', 'and', 'are', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'was', 'were', 'will', 'with', 'his', 'her', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
 	tokens = [t for t in tokens if not t.lower() in stop_words]
-	tokens = delete_articles(tokens)
-	tokens = conjunction_limiter(tokens)
-	tokens = preposition_limiter(tokens)
+	# tokens = delete_articles(tokens)
+	# tokens = conjunction_limiter(tokens)
+	# tokens = preposition_limiter(tokens)
 
 	# could add other rules
 	# make first letter uppercase, just in case
