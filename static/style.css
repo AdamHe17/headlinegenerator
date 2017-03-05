@@ -47,6 +47,7 @@ p {
 section {
   padding-top: 3em;
 }
+
 .break {
   height: 3px;
   width: 100%;
@@ -88,17 +89,21 @@ a {
   font-size: 1.5rem;
   padding: .2em 0;
 }
+
 a:hover {
   cursor: pointer;
   background-color: #764B8E;
 }
+
 a:active {
   background-color: #582A72;
 }
+
 #loading {
   padding-top: 8em;
   text-align: center;
 }
+
 li {
   margin: 0.5em 0;
 }

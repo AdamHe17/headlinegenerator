@@ -2,8 +2,8 @@ import os
 import random
 import time
 
-import linguistics, microsoft
-
+import linguistics
+import microsoft
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -16,11 +16,11 @@ def index(dynamic=random.random()):
 
 @app.route('/analysis', methods=['POST'])
 def analysis(dynamic=random.random()):
-	article = request.form['article']
-	time.sleep(7)
-	phrases = microsoft.get_key_phrases(article)
-	clusters = microsoft.find_clusters(phrases, article)
-	return render_template('analysis.html', article=article, dynamic=dynamic, headlines=[linguistics.headline(clusters, 10)])
+    article = request.form['article']
+    time.sleep(7)
+    phrases = microsoft.get_key_phrases(article)
+    clusters = microsoft.find_clusters(phrases, article)
+    return render_template('analysis.html', article=article, dynamic=dynamic, headlines=[linguistics.headline(clusters, 10)])
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
