@@ -3,7 +3,7 @@ from urllib.request import Request, urlopen, URLError
 import pickle, json, datetime, string, unicodedata, sys, time
 
 apikey = '&api-key='
-guardian_APIkey = apikey + 'b7275bf9-e35b-4cba-8439-b03126134973'
+guardian_APIkey = apikey + '9eda4b7a-ea8a-4283-b85b-189f7211d7f8'
 # nytimes_APIkey = apikey + '44c6ecf7957b48219259958b495b85a3'
 # Articles =  pickle.load(open("save.pkl","rb"))
 Articles = []
@@ -49,7 +49,7 @@ def addGuardianArticles(url):
 	except (URLError, e):
 	    print('No data. Got an error code:', e)
 
-	j = json.loads(data)
+	j = json.loads(data.decode('utf-8'))
 	j = j['response']['results']
 	if len(j) == 0:
 		print("No results found")
@@ -99,3 +99,12 @@ def tokenize(s):
 		elif char != '-':
 			new_s += ' '
 	return new_s.split()
+
+def combineData():
+	allData = []
+	for i in range(1998,2017):
+		print("year:", i)
+		data = pickle.load(open('data/' + str(i) + '-' + str(i+1) + '.pkl', 'rb'))
+		allData += data
+	print("size:", len(allData))
+	pickle.dump(allData, open('all-data.pkl', 'wb'))
