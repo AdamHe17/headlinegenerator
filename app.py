@@ -5,6 +5,7 @@ import time
 import linguistics
 import microsoft
 from flask import Flask, render_template, request
+from newspaper import Article
 
 app = Flask(__name__)
 

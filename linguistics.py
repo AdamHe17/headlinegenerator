@@ -24,7 +24,7 @@ def headline(clusters, length):
 
 def parts_of_speech(sample):
 	endpoint = "https://westus.api.cognitive.microsoft.com/linguistics/v1.0/analyze"
-	api_key = "3b1f167fa0f444aaab874f4fc749e0fa"
+	api_key = "1241e24a7ee2425a9f0a8ebbefdc5473"
 
 	headers = {
 	    # Request headers
@@ -39,6 +39,7 @@ def parts_of_speech(sample):
 	}
 
 	r = requests.post(endpoint, headers=headers, data=json.dumps(body))
+	print(r)
 	return r.json()[0]['result']
 
 def clean_headline(headline):
@@ -48,10 +49,10 @@ def clean_headline(headline):
 
 	tokens = [t for t in tokens if not t.lower() in stop_words]
 	result = " ".join(tokens)
-	result = delete_articles(result)
-	result = conjunction_limiter(result)
-	result = preposition_limiter(result)
-	result = delete_auxillary_verbs(result)
+	# result = delete_articles(result)
+	# result = conjunction_limiter(result)
+	# result = preposition_limiter(result)
+	# result = delete_auxillary_verbs(result)
 
 	tokens = tokenize(result)
 
