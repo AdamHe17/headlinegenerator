@@ -18,7 +18,7 @@ def resetArticles():
 def guardianArticles():
 	today = datetime.date.today()
 	i = 0
-	numdays = 365*2 
+	numdays = 365*2
 	goalday = today - datetime.timedelta(days = numdays)
 	for i in range(numdays): # 500 days of news articles
 		t = datetime.timedelta(days = i)
@@ -76,4 +76,3 @@ def tokenize(s):
 		elif char != '-':
 			new_s += ' '
 	return new_s.split()
-

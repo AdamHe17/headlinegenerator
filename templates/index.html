@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Headline Generator</title>
+  <link rel="stylesheet" type="text/css" href="../static/reset.css">
+  <link rel="stylesheet" type="text/css" href="../static/animate.css">
+  <link rel="stylesheet" type="text/css" href="../static/style.css?q{{ dynamic }}">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div class="header">
+    <h1>Headline Generator</h1>
+  </div>
+  <div class="container">
+    <section id="about">
+      <h2>About Us</h2>
+      <div class="break"></div>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+        desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </section>
+    <section id="analyze">
+      <h2>Article Analysis</h2>
+      <div class="break"></div>
+      <form id="article_submit" action="/analysis" method="POST">
+        <textarea id="article" type="text" name="article" placeholder="Copy your news article here" required></textarea>
+        <a id="submit">Try it out!</a>
+      </form>
+    </section>
+  </div>
+  <div class="footer">
+    <p>Eric Hao, Adam He, Dylan Ong, Max Schuman</p>
+    <br />
+    <p>Northwestern University</p>
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../static/app.js?q{{ dynamic }}"></script>
+</body>
+
+</html>
