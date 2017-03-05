@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import requests, json
 from microsoft import *
 
@@ -45,36 +47,35 @@ def clean_headline(headline):
 	stop_words = ['a', 'an', 'and', 'are', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'was', 'were', 'will', 'with', 'his', 'her', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
 	tokens = [t for t in tokens if not t.lower() in stop_words]
-	result = " ".joins
-	tokens = delete_articles(tokens)
-	tokens = conjunction_limiter(tokens)
-	tokens = preposition_limiter(tokens)
+	# tokens = delete_articles(tokens)
+	# tokens = conjunction_limiter(tokens)
+	# tokens = preposition_limiter(tokens)
 
 	# could add other rules
 	# make first letter uppercase, just in case
 	tokens[0] = tokens[0].title()
 
-	tokens = present_tense(tokens)
+	# tokens = present_tense(tokens)
 
 	return " ".join(tokens)
 
-def present_tense(sentenceList):
-	newlist = []
-	for i in sentenceList:
-		try:
-			newlist.append(en.verb.present(i))
-		except:
-			newlist.append(i)
-	return newlist
-
-from grammar_rules import *
-
-
-# phrases = get_key_phrases(sample)
-# clusters = find_clusters(phrases, sample)
-
-# print(headline(clusters, 10))
+# def present_tense(sentenceList):
+# 	newlist = []
+# 	for i in sentenceList:
+# 		try:
+# 			newlist.append(en.verb.present(i))
+# 		except:
+# 			newlist.append(i)
+# 	return newlist
+#
+# from grammar_rules import *
+#
+#
+# # phrases = get_key_phrases(sample)
+# # clusters = find_clusters(phrases, sample)
+#
+# # print(headline(clusters, 10))
 # phrases = get_key_phrases(sample)
 # clusters = find_clusters(phrases, sample)
 # headline = headline(clusters, 10)
-# print headline
+# print(headline)
