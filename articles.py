@@ -35,7 +35,7 @@ def guardianArticles(year):
 		addGuardianArticles(url)
 		if i % 5 == 0:
 			print("AUTOSAVING!")
-			pickle.dump(Articles, open(str(year) + '-' + str(year+1) + ".pkl", "wb"))		
+			pickle.dump(Articles, open(str(year) + '-' + str(year+1) + ".pkl", "wb"))
 	pickle.dump(Articles, open(str(year) + '-' + str(year+1) + ".pkl", "wb"))
 
 def addGuardianArticles(url):
@@ -75,7 +75,7 @@ def addGuardianArticles(url):
 			# 	print("length", l ,"article skipped.")
 		except:
 			print("Unexpected error:", sys.exc_info()[0])
-		
+
 def try_download(article, tries = 0):
 	try:
 		article.download()
@@ -99,4 +99,3 @@ def tokenize(s):
 		elif char != '-':
 			new_s += ' '
 	return new_s.split()
-

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Headline Generator</title>
+  <link rel="stylesheet" type="text/css" href="../static/reset.css">
+  <link rel="stylesheet" type="text/css" href="../static/style.css?q{{ dynamic }}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div class="header">
+    <h1>Headline Generator</h1>
+  </div>
+  <div class="container">
+    <section id="headlines">
+      <h2>Possible Headlines</h2>
+      <div class="break"></div>
+      <ul>
+        {% for headline in headlines %}
+        <li><p>{{ headline }}</p></li>
+        {% endfor %}
+      </ul>
+    </section>
+    <section id="analyze">
+      <h2>Article Analysis</h2>
+      <div class="break"></div>
+      <form id="article_submit" action="/analysis" method="POST">
+        <textarea id="article" type="text" name="article" placeholder="Copy your news article here" required></textarea>
+        <a id="submit">Try another article?</a>
+      </form>
+    </section>
+  </div>
+  <div class="footer">
+    <p>Eric Hao, Adam He, Dylan Ong, Max Schuman</p>
+    <br />
+    <p>Northwestern University @ HackTech 2017</p>
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../static/app.js?q{{ dynamic }}"></script>
+</body>
+
+</html>
