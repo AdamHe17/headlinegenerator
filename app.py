@@ -1,3 +1,4 @@
+import os
 import random
 import time
 
@@ -18,4 +19,5 @@ def analysis(dynamic=random.random()):
     return render_template('analysis.html', article=article, dynamic=dynamic, headlines=['test headline 1', 'test headline 2'])
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
