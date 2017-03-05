@@ -18,7 +18,8 @@ def get_key_phrases(sample):
 	r = requests.post(endpoint, headers=headers, data=json.dumps(data))
 
 	d = r.json()
-	return ["documents"][0]["keyPhrases"]
+	print(d)
+	return d["documents"][0]["keyPhrases"]
 
 
 def remove_accents(input_str):
