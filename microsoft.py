@@ -40,31 +40,45 @@ def find_phrase(p, tokens):
 
 def find_clusters(phrases, sample, sort_by_score=False):
 	tokens = tokenize(sample)
-	in_bigram = [False for i in range(len(tokens))]
+	in_bigram = [0 for i in range(len(tokens))]
 
 	for p in phrases:
 		locs = find_phrase(p, tokens)
 		for l in locs:
-			start = max(l[0] - 1, 0)
-			end = min(l[1] + 1, len(tokens) - 1)
-			in_bigram[start:end] = [True for i in range(start, end)]
+			start = l[0]
+			end = l[1]
+			lower = max(start - 1, 0)
+			upper = min(end + 1, len(tokens) - 1)
+			in_bigram[start:end] = list(map(lambda x: x + 2, in_bigram[start:end]))
+			if lower is not start:
+				in_bigram[lower] += 1
+			if upper is not end:
+				in_bigram[upper] += 1
 
 	# turn boolean into clusters
 	clusters = []
 	current = ""
+	weight = 0
 	for i in range(len(tokens)):
 		t = tokens[i]
-		if in_bigram[i]:
+		if in_bigram[i] >= 1:
 			current += t
 			current += " "
+			weight += in_bigram[i]
 		elif current is not "":
-			clusters.append(current[:-1])
+			# Function for scoring cluster "value" with heuristic
+			# currently done by subtracting index of final word from sum of overlap values
+			val = weight / 2 - 0.3 * i
+			clusters.append((current[:-1], val))
+
 			current = ""
+			weight = 0
+
 	
 	if sort_by_score:
-		return sorted(clusters, key=lambda x: -score_cluster(x, phrases))
+		return list(map(lambda x: x[0], sorted(clusters, key=lambda x: -x[1])))
 	
-	return clusters
+	return list(map(lambda x: x[0], clusters))
 
 def score_cluster(cluster, phrases):
 	"""
