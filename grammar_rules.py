@@ -1,9 +1,4 @@
-from linguistics import *
-from num2words import num2words
-
-
-
-HEADLINE = ""
+from linguistics import parts_of_speech
 
 
 def delete_articles(tokenized_headline):
@@ -15,7 +10,7 @@ def delete_articles(tokenized_headline):
 
 
 def conjunction_limiter(tokenized_headline):
-	parts_of_speech = ["and", "but", "or", "for", "nor", "so", "yet", "And", "But", "Or", "For", "Nor", "So", "Yet"]
+	conjunctions = ["and", "but", "or", "for", "nor", "so", "yet", "And", "But", "Or", "For", "Nor", "So", "Yet"]
 	while tokenized_headline[0] in conjunctions:
 		tokenized_headline.remove(tokenized_headline[0])
 	while tokenized_headline[-1] in conjunctions:
@@ -31,4 +26,5 @@ def preposition_limiter(tokenized_headline):
 		tokenized_headline.remove(tokenized_headline[-1])
 		headline_parts_of_speech.remove(headline_parts_of_speech[0][-1])
 	return tokenized_headline		
+
 
