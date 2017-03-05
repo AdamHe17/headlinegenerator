@@ -17,7 +17,7 @@ def index(dynamic=random.random()):
 @app.route('/analysis', methods=['POST'])
 def analysis(dynamic=random.random()):
     article = request.form['article']
-    time.sleep(7)
+    time.sleep(2)
     phrases = microsoft.get_key_phrases(article)
     clusters = microsoft.find_clusters(phrases, article)
     return render_template('analysis.html', article=article, dynamic=dynamic, headlines=[linguistics.headline(clusters, 10)])
