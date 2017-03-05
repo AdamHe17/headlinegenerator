@@ -1,4 +1,4 @@
-import requests, json, en
+import requests, json
 from microsoft import *
 
 sample = "On Saturday, workers in the middle of a union drive at the Nissan plant in Canton, Miss., stopped to hear from a special guest: Sen. Bernie Sanders. The onetime presidential candidate, now the Democratic caucus’s point man on political outreach, came to the “March on Mississippi” event both to help the United Automobile Workers’ campaign and to send a message about what opponents of President Drumpf should be doing.\n“What I’m going to be saying is that the facts are very clear, that workers in America who are members of unions earn substantially more, 27 percent more, than workers not in unions,” Sanders (I-Vt.) said in an interview before the speech. “They get pensions and better working conditions. I find it very remarkable that Nissan is allowing unions to form at its plants all over the world. Well, if they can be organized everywhere else, they can be organized in Mississippi.”\nIn a statement, new Democratic National Committee Chairman Tom Perez, the former U.S. labor secretary, lent his support to the rally and the union drive."
@@ -45,6 +45,7 @@ def clean_headline(headline):
 	stop_words = ['a', 'an', 'and', 'are', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'was', 'were', 'will', 'with', 'his', 'her', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
 	tokens = [t for t in tokens if not t.lower() in stop_words]
+	result = " ".joins
 	tokens = delete_articles(tokens)
 	tokens = conjunction_limiter(tokens)
 	tokens = preposition_limiter(tokens)
@@ -73,7 +74,7 @@ from grammar_rules import *
 # clusters = find_clusters(phrases, sample)
 
 # print(headline(clusters, 10))
-phrases = get_key_phrases(sample)
-clusters = find_clusters(phrases, sample)
-headline = headline(clusters, 10)
-print headline
+# phrases = get_key_phrases(sample)
+# clusters = find_clusters(phrases, sample)
+# headline = headline(clusters, 10)
+# print headline
