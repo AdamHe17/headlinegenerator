@@ -33,7 +33,7 @@ def parts_of_speech(sample):
 	body = {
 		"language" : "en",
 		"analyzerIds" : ["4fa79af1-f22c-408d-98bb-b7d7aeef7f04"],
-		"text" : sample 
+		"text" : sample
 	}
 
 	r = requests.post(endpoint, headers=headers, data=json.dumps(body))
