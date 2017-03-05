@@ -30,6 +30,7 @@ def tokenize(s):
 	accepted = string.ascii_lowercase + string.ascii_uppercase + " $%-'’"
 	new_s = ''
 	for char in remove_accents(s):
+		char = char.decode('utf-8')
 		if char in accepted:
 			new_s += char
 		elif char != '-':
