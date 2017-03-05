@@ -99,3 +99,12 @@ def tokenize(s):
 		elif char != '-':
 			new_s += ' '
 	return new_s.split()
+
+def combineData():
+	allData = []
+	for i in range(1998,2017):
+		print("year:", i)
+		data = pickle.load(open('data/' + str(i) + '-' + str(i+1) + '.pkl', 'rb'))
+		allData += data
+	print("size:", len(allData))
+	pickle.dump(allData, open('all-data.pkl', 'wb'))
