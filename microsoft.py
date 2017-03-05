@@ -68,7 +68,7 @@ def find_clusters(phrases, sample, sort_by_score=False):
 		elif current is not "":
 			# Function for scoring cluster "value" with heuristic
 			# currently done by subtracting index of final word from sum of overlap values
-			val = weight / 2 - 0.3 * i
+			val = 1.8 * weight - 0.7 * i ** 1.2
 			clusters.append((current[:-1], val))
 
 			current = ""
