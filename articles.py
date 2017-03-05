@@ -1,23 +1,29 @@
 from newspaper import Article
 from urllib.request import Request, urlopen, URLError
-import pickle, json, datetime, string, unicodedata, sys
+import pickle, json, datetime, string, unicodedata, sys, time
 
 apikey = '&api-key='
 guardian_APIkey = apikey + 'b7275bf9-e35b-4cba-8439-b03126134973'
-nytimes_APIkey = apikey + '44c6ecf7957b48219259958b495b85a3'
-Articles =  pickle.load(open("save.pkl","rb"))
-# Articles = []
+# nytimes_APIkey = apikey + '44c6ecf7957b48219259958b495b85a3'
+# Articles =  pickle.load(open("save.pkl","rb"))
+Articles = []
 Query = 'politics'
 
-def resetArticles():
+def getArticlesYear(year):
+	resetArticles(year)
+	guardianArticles(year)
+
+def resetArticles(year):
 	"""
 	Erases save.pkl
 	WARNING: DON'T TOUCH
 	"""
-	pickle.dump([], open("save.pkl", "wb"))
+	print(year)
+	pickle.dump([], open(str(year) + '-' + str(year+1) + ".pkl", "wb"))
 
-def guardianArticles():
-	today = datetime.date.today()
+def guardianArticles(year):
+	yrsago = 2017 - year - 1
+	today = datetime.date.today() - datetime.timedelta(days = 365*yrsago)
 	i = 0
 	numdays = 365
 	goalday = today - datetime.timedelta(days = numdays)
@@ -29,8 +35,8 @@ def guardianArticles():
 		addGuardianArticles(url)
 		if i % 5 == 0:
 			print("AUTOSAVING!")
-			pickle.dump(Articles, open("save.pkl", "wb"))		
-	pickle.dump(Articles, open("save.pkl", "wb"))
+			pickle.dump(Articles, open(str(year) + '-' + str(year+1) + ".pkl", "wb"))		
+	pickle.dump(Articles, open(str(year) + '-' + str(year+1) + ".pkl", "wb"))
 
 def addGuardianArticles(url):
 	"""
@@ -50,7 +56,7 @@ def addGuardianArticles(url):
 	all_ten = [j[i] for i in range(len(j))]
 	for one_article in all_ten:
 		a = Article(one_article['webUrl'])
-		a.download()
+		try_download(a)
 
 		try:
 			a.parse()
@@ -70,6 +76,14 @@ def addGuardianArticles(url):
 		except:
 			print("Unexpected error:", sys.exc_info()[0])
 		
+def try_download(article, tries = 0):
+	try:
+		article.download()
+	except:
+		if tries > 3:
+			print("Unexpected error:", sys.exc_info()[0])
+		else:
+			try_download(article, tries + 1)
 
 def remove_accents(input_str):
     nfkd_form = unicodedata.normalize('NFKD', input_str)
