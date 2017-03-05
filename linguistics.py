@@ -47,9 +47,13 @@ def clean_headline(headline):
 	stop_words = ['a', 'an', 'and', 'are', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'was', 'were', 'will', 'with', 'his', 'her', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
 	tokens = [t for t in tokens if not t.lower() in stop_words]
-	# tokens = delete_articles(tokens)
-	# tokens = conjunction_limiter(tokens)
-	# tokens = preposition_limiter(tokens)
+	result = " ".join(tokens)
+	result = delete_articles(result)
+	result = conjunction_limiter(result)
+	result = preposition_limiter(result)
+	result = delete_auxillary_verbs(result)
+
+	tokens = tokenize(result)
 
 	# could add other rules
 	# make first letter uppercase, just in case
@@ -68,7 +72,7 @@ def clean_headline(headline):
 # 			newlist.append(i)
 # 	return newlist
 #
-# from grammar_rules import *
+from grammar_rules import *
 #
 #
 # # phrases = get_key_phrases(sample)
